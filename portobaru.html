@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adhitya Al Fathurrohman | Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Adhitya Al Fathurrohman — Informatics Engineering student specializing in IT Support, Networking, and Cybersecurity.">
+    <meta name="author" content="Adhitya Al Fathurrohman">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #e2e0d8;
+            --bg: #191919;
+            --muted: #a09e98;
+            --gold: #c6a15b;
+            --gold-bright: #e3c07f;
+            --gold-dim: rgba(198, 161, 91, 0.35);
+            --gold-faint: rgba(198, 161, 91, 0.14);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--ink);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 60px 80px;
+            overflow-y: auto;
+            transition: left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            background:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cdefs%3E%3Cpattern id='p' width='120' height='120' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'%3E%3Crect width='120' height='120' fill='none'/%3E%3Cpath d='M0 30 Q30 0 60 30 T120 30' stroke='%23c6a15b' stroke-width='1' fill='none' opacity='0.55'/%3E%3Cpath d='M0 90 Q30 60 60 90 T120 90' stroke='%23c6a15b' stroke-width='1' fill='none' opacity='0.55'/%3E%3Ccircle cx='30' cy='60' r='2.4' fill='%23c6a15b' opacity='0.5'/%3E%3Ccircle cx='90' cy='0' r='2.4' fill='%23c6a15b' opacity='0.5'/%3E%3Ccircle cx='90' cy='120' r='2.4' fill='%23c6a15b' opacity='0.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='120' height='120' fill='url(%23p)'/%3E%3C/svg%3E") 0 0 / 150px 150px repeat,
+                var(--bg);
+            background-blend-mode: normal;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .slide.active {
+                animation: batikDrift 120s linear infinite;
+            }
+        }
+
+        @keyframes batikDrift {
+            from {
+                background-position: 0 0, 0 0;
+            }
+
+            to {
+                background-position: 150px 150px, 0 0;
+            }
+        }
+
+        .slide.active {
+            left: 0;
+        }
+
+        .slide.prev {
+            left: -100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            color: var(--muted);
+            text-transform: uppercase;
+            flex-shrink: 0;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--gold-faint);
+        }
+
+        .header .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .eyebrow::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-faint);
+        }
+
+        .nav-arrows {
+            display: flex;
+            gap: 20px;
+            cursor: pointer;
+        }
+
+        .arrow-btn {
+            background: none;
+            border: none;
+            color: var(--ink);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .arrow-btn:hover {
+            color: var(--gold-bright);
+            transform: scale(1.15);
+        }
+
+        .arrow-btn:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        .content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .slide.active .content {
+                animation: riseIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+            }
+        }
+
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+            flex-shrink: 0;
+            padding-top: 16px;
+            border-top: 1px solid var(--gold-faint);
+        }
+
+        /* Typography */
+        .big-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 11rem;
+            letter-spacing: 4px;
+            line-height: 0.9;
+            color: var(--ink);
+            text-shadow: 0 0 60px var(--gold-faint);
+        }
+
+        .ornament {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 26px;
+            color: var(--gold);
+        }
+
+        .ornament::before,
+        .ornament::after {
+            content: '';
+            width: 46px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold));
+        }
+
+        .ornament::after {
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .ornament .diamond {
+            width: 7px;
+            height: 7px;
+            transform: rotate(45deg);
+            border: 1px solid var(--gold);
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 5rem;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            color: var(--ink);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 130px;
+            height: 11px;
+            margin: 16px auto 22px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='11'%3E%3Cline x1='0' y1='5.5' x2='48' y2='5.5' stroke='%23c6a15b' stroke-width='1'/%3E%3Ccircle cx='65' cy='5.5' r='3.5' fill='none' stroke='%23c6a15b' stroke-width='1'/%3E%3Cline x1='82' y1='5.5' x2='130' y2='5.5' stroke='%23c6a15b' stroke-width='1'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .tagline {
+            color: var(--muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 18px;
+        }
+
+        .desc-text {
+            max-width: 800px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #b0b0a8;
+            margin-bottom: 12px;
+        }
+
+        .photo-frame {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--gold-dim);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 5px rgba(0, 0, 0, 0.3), 0 0 0 6px var(--gold-faint);
+            background: linear-gradient(145deg, #2a2a2a, #222);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .photo-frame svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .photo-frame .photo-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.6);
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            color: var(--gold-bright);
+            text-align: center;
+            border-top: 1px solid var(--gold-faint);
+        }
+
+        .icon-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: #222;
+            border: 1px solid var(--gold-dim);
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .icon-link:hover,
+        .icon-link:focus-visible {
+            background: var(--gold);
+            color: #191919;
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .skill-cat h4 a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .skill-cat h4 a:hover {
+            color: var(--gold-bright);
+        }
+
+        .skill-cat ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .skill-cat ul li a:hover {
+            color: var(--gold-bright);
+        }
+
+        .social-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        /* Slide 2: Table of Contents */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 800px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .toc-btn {
+            border: 1px solid #555;
+            padding: 12px 20px;
+            border-radius: 30px;
+            background: transparent;
+            color: var(--ink);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toc-btn:hover,
+        .toc-btn:focus-visible {
+            background-color: var(--gold);
+            color: #191919;
+            border-color: var(--gold);
+        }
+
+        /* Layouts */
+        .split-layout {
+            display: flex;
+            width: 100%;
+            max-width: 1100px;
+            gap: 50px;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .split-column {
+            flex: 1;
+        }
+
+        /* Experience Grid */
+        .exp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            text-align: left;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .exp-item {
+            position: relative;
+            padding-left: 18px;
+            border-left: 1px solid var(--gold-faint);
+        }
+
+        .exp-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .exp-item .company {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .exp-item .date {
+            color: #777;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .exp-item ul {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #ccc;
+            padding-left: 18px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            text-align: left;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .skill-cat h4 {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .skill-cat ul {
+            list-style: none;
+            font-size: 0.85rem;
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--gold-bright);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+            }
+
+            .big-title {
+                font-size: 4rem;
+            }
+
+            .section-title {
+                font-size: 2.6rem;
+            }
+
+            .split-layout,
+            .exp-grid,
+            .skills-grid {
+                flex-direction: column;
+                grid-template-columns: 1fr;
+            }
+
+            .toc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slide-container">
+
+        <!-- Slide 1: Cover -->
+        <section class="slide active" id="slide-0">
+            <div class="header">
+                <span class="eyebrow">Portfolio</span>
+                <div class="nav-arrows">
+                    <button class="arrow-btn" onclick="nextSlide()" aria-label="Next slide">&rarr;</button>
+                </div>
+            </div>
+            <div class="content">
+                <h1 class="big-title">PORTFOLIO</h1>
+                <p class="tagline" style="margin-top: 20px;">IT Support &middot; Networking &middot; Cybersecurity</p>
+                <div class="ornament"><span class="diamond"></span></div>
+            </div>
+            <div class="footer">
+                <span>Adhitya Al Fathurrohman</span>
+                <span>2026</span>
+            </div>
+        </section>
+
+        <!-- Slide 2: Table of Contents -->
+        <section class="slide" id="slide-1">
+            <div class="header">
+                <span class="eyebrow">Portfolio</span>
+                <div class="nav-arrows">
+                    <button class="arrow-btn" onclick="prevSlide()" aria-label="Previous slide">&larr;</button>
+                    <button class="arrow-btn" onclick="nextSlide()" aria-label="Next slide">&rarr;</button>
+                </div>
+            </div>
+            <div class="content">
+                <h2 class="section-title">TABLE OF CONTENTS</h2>
+                <div class="toc-grid">
+                    <button class="toc-btn" onclick="goToSlide(2)">INTRODUCTION</button>
+                    <button class="toc-btn" onclick="goToSlide(3)">ABOUT ME</button>
+                    <button class="toc-btn" onclick="goToSlide(4)">EDUCATION</button>
+                    <button class="toc-btn" onclick="goToSlide(5)">EXPERIENCE</button>
+                    <button class="toc-btn" onclick="goToSlide(6)">SKILLS</button>
+                    <button class="toc-btn" onclick="goToSlide(7)">WORKSHOPS</button>
+                    <button class="toc-btn" onclick="goToSlide(8)">CONTACT</button>
+                    <button class="toc-btn" onclick="goToSlide(9)">THANK YOU</button>
+                    <button class="toc-btn" onclick="goToSlide(0)">HOME</button>
+                </div>
+            </div>
+            <div class="footer"></div>
+        </section>
+
+        <!-- Slide 3: Introduction -->
+        <section class="slide" id="slide-2">
+            <div class="header">
+                <span class="eyebrow">Introduction</span>
+                <div class="nav-arrows">
+                    <button class="arrow-btn" onclick="prevSlide()" aria-label="Previous slide">&larr;</button>
+                    <button class="arrow-btn" onclick="nextSlide()" aria-label="Next slide">&rarr;</button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="photo-frame" style="width: 320px; height: 180px;">
+                    <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="320" height="180" fill="#242424" />
+                        <defs>
+                            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#3a3a3a" />
+                                <stop offset="100%" stop-color="#1f1f1f" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="160" cy="70" r="34" fill="url(#g1)" stroke="#4a4a4a" stroke-width="2" />
+                        <path d="M100 150 c0 -34 28 -52 60 -52 c32 0 60 18 60 52 z" fill="url(#g1)" stroke="#4a4a4a"
+                            stroke-width="2" />
+                        <text x="160" y="162" text-anchor="middle" fill="#8a8a8a" font-family="monospace" font-size="11"
+                            letter-spacing="2">PROFILE PHOTO</text>
+                    </svg>
+                    <div class="photo-label">ADHITYA AL FATHURROHMAN</div>
+                </div>
+                <h2 class="section-title" style="margin-bottom: 10px;">INTRODUCTION</h2>
+                <p class="subtitle">ADHITYA AL FATHURROHMAN</p>
+                <p class="tagline">Informatics Engineering Student &middot; IT Support &middot; Networking &middot;
+                    Technical Support</p>
+                <p class="desc-text">
+                    I am a fourth-semester Informatics Engineering student at Universitas Pamulang with hands-on
+                    experience across account management, production operations, housekeeping services, and
+                    computer and electronics maintenance. I have a strong interest in information technology,
+                    networking, and cybersecurity, and I continue to build my technical skills while adapting
+                    quickly to new environments and challenges.
+                </p>
+            </div>
+            <div class="footer"></div>
+        </section>
+
+        <!-- Slide 4: About Me -->
+        <section class="slide" id="slide-3">
+            <div class="header">
+                <span class="eyebrow">About Me</span>
+                <div class="nav-arrows">
+                    <button class="arrow-btn" onclick="prevSlide()" aria-label="Previous slide">&larr;</button>
+                    <button class="arrow-btn" onclick="nextSlide()" aria-label="Next slide">&rarr;</button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="split-layout">
+                    <div class="split-column">
+                        <h2 class="section-title">ADHITYA AL FATHURROHMAN</h2>
+                        <p class="desc-text">I am an Informatics Engineering student who enjoys learning new
+                            technologies and solving technical problems. Through my academic studies and
+                            professional experience, I have developed strong analytical, communication, and
+                            teamwork skills.</p>
+                        <p class="desc-text">I have practical experience in computer troubleshooting, operating
+                            system installation, networking fundamentals, Microsoft Office, and customer
+                            communication. I believe continuous learning, discipline, and adaptability are
+                            essential to achieving professional excellence.</p>
+                        <p class="desc-text">My career goal is to become an IT professional specializing in
+                            IT Support, Networking, Cybersecurity, or System Administration, while continuously
+                            expanding my knowledge and technical expertise.</p>
+                    </div>
+                    <div class="split-column" style="text-align: right;">
+                        <div class="photo-frame" style="width: 100%; max-width: 350px; height: 420px;">
+                            <svg viewBox="0 0 350 420" preserveAspectRatio="xMidYMid slice"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="350" height="420" fill="#242424" />
+                                <defs>
+                                    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#3a3a3a" />
+                                        <stop offset="100%" stop-color="#1f1f1f" />
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="175" cy="155" r="62" fill="url(#g2)" stroke="#4a4a4a" stroke-width="2" />
+                                <path d="M85 400 c0 -70 40 -110 90 -110 c50 0 90 40 90 110 z" fill="url(#g2)"
+                                    stroke="#4a4a4a" stroke-width="2" />
+                                <text x="175" y="350" text-anchor="middle" fill="#8a8a8a" font-family="monospace"
+                                    font-size="13" letter-spacing="2">ADHITYA A.F.</text>
+                            </svg>
+                            <div class="photo-label">ABOUT ME</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer"></div>
+        </section>
+
+        <!-- Slide 5: Education -->
+        <section class="slide" id="slide-4">
+            <div class="header">
+                <span class="eyebrow">Education</span>
+                <div class="nav-arrows">
+                    <button class="arrow-btn" onclick="prevSlide()" aria-label="Previous slide">&larr;</button>
+                    <button class="arrow-btn" onclick="nextSlide()" aria-label="Next slide">&rarr;</button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="split-layout">
+                    <div class="split-column">
+                        <div class="photo-frame" style="width: 100%; height: 220px;">
+                            <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="400" height="250" fill="#242424" />
+                                <defs>
+                                    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#3a3a3a" />
+                                        <stop offset="100%" stop-color="#1f1f1f" />
+                                    </linearGradient>
+                                </defs>
+                                <rect x="150" y="70" width="100" height="80" rx="4" fill="url(#g3)" stroke="#4a4a4a"
+                                    stroke-width="2" />
+                                <path d="M150 70 L200 40 L250 70 z" fill="url(#g3)" stroke="#4a4a4a" stroke-width="2" />
+                                <text x="200" y="120" text-anchor="middle" fill="#8a8a8a" font-family="monospace"
+                                    font-size="12" letter-spacing="1">CAMPUS</text>
+                            </svg>
+                            <div class="photo-label">UNIVERSITAS PAMULANG</div>
+                        </div>
+                        <h3 style="font-size: 1.1rem; margin-top: 10px;">Universitas Pamulang</h3>
+                        <p style="font-size: 0.9rem; color: var(--muted);">Bachelor's Degree in Informatics Engineering
+                        </p>
+                        <p style="font-size: 0.85rem; color: #777;">2025 &ndash; Present</p>
+                    </div>
+                    <div class="split-column">
+                        <h2 class="section-title">EDUCATION</h2>
+                        <h3 style="font-size: 1.1rem; margin-top: 20px;">SMK Muhammadiyah 5 Babat</h3>
+                        <p style="font-size: 0.9rem; color: var(--muted);">Computer and Network Engineering</p>
+                        <p style="font-size: 0.85rem; color: #777;">2021 &ndash; 2024</p>
+                        <p style="font-size: 0.85rem; color: var(--gold-bright); margin-top: 5px;">Final Academic Score:
+                            81.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <span>Adhitya Al Fathurrohman</span>
+            </div>
+        </section>
+
+        <!-- Slide 6: Experience -->
+        <section class="slide" id="slide-5">
+            <div class="header">
+                <span class="eyebrow">Work Experience</span>
+                <div class="nav-arrows">
+                    <button class="arrow-btn" onclick="prevSlide()" aria-label="Previous slide">&larr;</button>
+                    <button class="arrow-btn" onclick="nextSlide()" aria-label="Next slide">&rarr;</button>
+                </div>
+            </div>
+            <div class="content">
+                <h2 class="section-title" style="margin-bottom: 30px;">WORK EXPERIENCE</h2>
+                <div class="exp-grid">
+                    <div class="exp-item">
+                        <h3>Account Executive</h3>
+                        <div class="company">PT Cyberindo Aditama</div>
+                        <div class="date">April 2026 &ndash; Present</div>
+                        <ul>
+                            <li>Present company products and services to prospective clients.</li>
+                            <li>Build and maintain long-term relationships with customers.</li>
+                            <li>Negotiate pricing and service agreements.</li>
+                            <li>Collaborate with the team to achieve company sales targets.</li>
+                            <li>Handle customer inquiries and provide professional solutions.</li>
+                        </ul>
+                    </div>
+                    <div class="exp-item">
+                        <h3>Production Operator</h3>
+                        <div class="company">PT Bio Organik Nusantara</div>
+                        <div class="date">March 2026 &ndash; April 2026</div>
+                        <ul>
+                            <li>Operated production equipment according to company SOPs.</li>
+                            <li>Monitored product quality throughout the production process.</li>
+                            <li>Reported operational issues to supervisors.</li>
+                            <li>Maintained workplace cleanliness and safety.</li>
+                        </ul>
+                    </div>
+                    <div class="exp-item">
+                        <h3>Housekeeping Staff</h3>
+                        <div class="company">PT Patra Jasa</div>
+                        <div class="date">September 2024 &ndash; March 2026</div>
+                        <ul>
+                            <li>Maintained cleanliness of office facilities and work areas.</li>
+                            <li>Prepared and managed cleaning equipment.</li>
+                            <li>Followed company safety procedures and operational standards.</li>
+                            <li>Responded to cleaning requests efficiently.</li>
+                        </ul>
+                    </div>
+                    <div class="exp-item">
+                        <h3>Technical Operator</h3>
+                        <div class="company">PT Multi Business Indonesia</div>
+                        <div class="date">July 2023 &ndash; December 2023</div>
+                        <ul>
+                            <li>Diagnosed hardware and software issues.</li>
+                            <li>Installed and configured operating systems.</li>
+                            <li>Performed computer and smartphone maintenance.</li>
+                            <li>Tested devices before returning them to customers.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer"></div>
+        </section>
+
+        <!-- Slide 7: Personal Skills -->
+        <section class="slide" id="slide-6">
+            <div class="header">
+                <span class="eyebrow">Skills</span>
+                <div class="nav-arrows">
+                    <button class="arrow-btn" onclick="prevSlide()" aria-label="Previous slide">&larr;</button>
+                    <button class="arrow-btn" onclick="nextSlide()" aria-label="Next slide">&rarr;</button>
+                </div>
+            </div>
+            <div class="content">
+                <h2 class="section-title" style="margin-bottom: 40px;">SKILLS</h2>
+                <div class="skills-grid">
+                    <div class="skill-cat">
+                        <h4><a href="https://www.python.org" target="_blank" rel="noopener">💻 Programming</a></h4>
+                        <ul>
+                            <li><a href="https://www.python.org" target="_blank" rel="noopener">🐍 Python</a></li>
+                            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank"
+                                    rel="noopener">🌐 HTML5</a></li>
+                            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank"
+                                    rel="noopener">🎨 CSS3</a></li>
+                            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"
+                                    rel="noopener">📜 JavaScript</a></li>
+                            <li><a href="https://nodejs.org" target="_blank" rel="noopener">🟢 Node.js</a></li>
+                        </ul>
+                    </div>
+                    <div class="skill-cat">
+                        <h4><a href="https://www.microsoft.com/microsoft-365" target="_blank" rel="noopener">📄
+                                Microsoft Office</a></h4>
+                        <ul>
+                            <li><a href="https://www.microsoft.com/microsoft-365/word" target="_blank" rel="noopener">🟦
+                                    Microsoft Word</a></li>
+                            <li><a href="https://www.microsoft.com/microsoft-365/excel" target="_blank"
+                                    rel="noopener">🟢 Microsoft Excel</a></li>
+                            <li><a href="https://www.microsoft.com/microsoft-365/powerpoint" target="_blank"
+                                    rel="noopener">🟠 Microsoft PowerPoint</a></li>
+                        </ul>
+                    </div>
+                    <div class="skill-cat">
+                        <h4><a href="https://chatgpt.com" target="_blank" rel="noopener">🤖 AI Tools</a></h4>
+                        <ul>
+                            <li><a href="https://chatgpt.com" target="_blank" rel="noopener">💬 ChatGPT</a></li>
+                            <li><a href="https://claude.ai" target="_blank" rel="noopener">🟣 Claude</a></li>
+                            <li><a href="https://gemini.google.com" target="_blank" rel="noopener">✨ Gemini</a></li>
+                        </ul>
+                    </div>
+                    <div class="skill-cat">
+                        <h4><a href="https://www.cisco.com" target="_blank" rel="noopener">🌐 Networking</a></h4>
+                        <ul>
+                            <li><a href="https://www.cisco.com" target="_blank" rel="noopener">🌐 Cisco</a></li>
+                            <li><a href="https://www.netacad.com/courses/packet-tracer" target="_blank"
+                                    rel="noopener">📡 Cisco Packet Tracer</a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/Internet_protocol_suite" target="_blank"
+                                    rel="noopener">🌍 TCP/IP</a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/Virtual_LAN" target="_blank" rel="noopener">🔀
+                                    VLAN</a></li>
+                        </ul>
+                    </div>
+                    <div class="skill-cat">
+                        <h4><a href="https://code.visualstudio.com" target="_blank" rel="noopener">🛠 Development</a>
+                        </h4>
+                        <ul>
+                            <li><a href="https://code.visualstudio.com" target="_blank" rel="noopener">💙 Visual Studio
+                                    Code</a></li>
+                            <li><a href="https://git-scm.com" target="_blank" rel="noopener">🐙 Git</a></li>
+                            <li><a href="https://github.com" target="_blank" rel="noopener">🐱 GitHub</a></li>
+                            <li><a href="https://www.docker.com" target="_blank" rel="noopener">🐳 Docker</a></li>
+                            <li><a href="https://www.virtualbox.org" target="_blank" rel="noopener">📦 VirtualBox</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="skill-cat">
+                        <h4><a href="https://www.linux.org" target="_blank" rel="noopener">🔐 Cybersecurity</a></h4>
+                        <ul>
+                            <li><a href="https://www.linux.org" target="_blank" rel="noopener">🐧 Linux</a></li>
+                            <li><a href="https://www.wireshark.org" target="_blank" rel="noopener">🦈 Wireshark</a></li>
+                            <li><a href="https://nmap.org" target="_blank" rel="noopener">🕵️ Nmap</a></li>
+                            <li><a href="https://www.metasploit.com" target="_blank" rel="noopener">💣 Metasploit</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer"></div>
+        </section>
+
+        <!-- Slide 8: Workshops -->
+        <section class="slide" id="slide-7">
+            <div class="header">
+                <span class="eyebrow">Workshops</span>
+                <div class="nav-arrows">
+                    <button class="arrow-btn" onclick="prevSlide()" aria-label="Previous slide">&larr;</button>
+                    <button class="arrow-btn" onclick="nextSlide()" aria-label="Next slide">&rarr;</button>
+                </div>
+            </div>
+            <div class="content"
+                style="align-items: flex-start; text-align: left; max-width: 800px; margin: 0 auto; width: 100%;">
+                <h2 class="section-title">WORKSHOPS &amp; SEMINARS</h2>
+                <ul style="list-style: none; font-size: 1.05rem; line-height: 2.2; color: #ccc; margin-top: 20px;">
+                    <li>&bull; System Analysis and Design Workshop</li>
+                    <li>&bull; Future of Web Development Seminar</li>
+                    <li>&bull; National Seminar on Ethical AI and Critical Thinking</li>
+                    <li>&bull; Student Skills Training &mdash; Critical Thinking, Communication &amp; Self-Development
+                    </li>
+                </ul>
+            </div>
+            <div class="footer"></div>
+        </section>
+
+        <!-- Slide 9: Career Objective & Contact -->
+        <section class="slide" id="slide-8">
+            <div class="header">
+                <span class="eyebrow">Career &amp; Contact</span>
+                <div class="nav-arrows">
+                    <button class="arrow-btn" onclick="prevSlide()" aria-label="Previous slide">&larr;</button>
+                    <button class="arrow-btn" onclick="nextSlide()" aria-label="Next slide">&rarr;</button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="split-layout">
+                    <div class="split-column">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 15px;">Career Objective</h3>
+                        <p class="desc-text" style="font-size: 0.9rem;">
+                            To obtain a challenging position in the Information Technology field where I can apply
+                            my technical knowledge, continuously develop my professional skills, and contribute to
+                            organizational success through innovation, teamwork, and dedication.
+                        </p>
+                        <h3 style="font-size: 1.2rem; margin-top: 30px; margin-bottom: 15px;">Languages</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 5px;"><strong>Indonesian</strong></p>
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 15px;">Native Proficiency</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 5px;"><strong>English</strong></p>
+                        <p style="font-size: 0.85rem; color: var(--muted);">Basic Conversational (Currently Improving)
+                        </p>
+                    </div>
+                    <div class="split-column"
+                        style="background-color: #222; padding: 30px; border-radius: 8px; border: 1px solid var(--gold-faint);">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 20px; color: #fff;">Contact</h3>
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 2px;">Email</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 15px;"><a
+                                href="mailto:adhityaalfathurrohman366@gmail.com">adhityaalfathurrohman366@gmail.com</a>
+                        </p>
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 2px;">Phone</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 15px;">+62 851-7790-6462</p>
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 2px;">Location</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 15px;">Tangerang, Banten, Indonesia</p>
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 2px;">LinkedIn</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 15px;"><a
+                                href="https://linkedin.com/in/adhityaalfathurrohman" target="_blank"
+                                rel="noopener">linkedin.com/in/adhityaalfathurrohman</a></p>
+                        <div class="social-row">
+                            <a class="icon-link" href="mailto:adhityaalfathurrohman366@gmail.com" title="Email"
+                                aria-label="Email">✉️</a>
+                            <a class="icon-link" href="tel:+6285177906462" title="Phone" aria-label="Phone">📞</a>
+                            <a class="icon-link" href="https://linkedin.com/in/adhityaalfathurrohman" target="_blank"
+                                rel="noopener" title="LinkedIn" aria-label="LinkedIn">💼</a>
+                            <a class="icon-link" href="https://github.com" target="_blank" rel="noopener" title="GitHub"
+                                aria-label="GitHub">🐙</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer"></div>
+        </section>
+
+        <!-- Slide 10: Thank You -->
+        <section class="slide" id="slide-9">
+            <div class="header">
+                <span class="eyebrow">Thank You</span>
+                <div class="nav-arrows">
+                    <button class="arrow-btn" onclick="prevSlide()" aria-label="Previous slide">&larr;</button>
+                </div>
+            </div>
+            <div class="content">
+                <h1 class="big-title">THANK YOU</h1>
+                <div class="ornament"><span class="diamond"></span></div>
+            </div>
+            <div class="footer">
+                <span>Adhitya Al Fathurrohman</span>
+                <span>adhityaalfathurrohman366@gmail.com</span>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else if (index < currentSlide) {
+                    slide.classList.add('prev');
+                }
+            });
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        }
+
+        function goToSlide(index) {
+            if (index >= 0 && index < totalSlides) {
+                currentSlide = index;
+                updateSlides();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Touch swipe navigation for mobile
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? nextSlide() : prevSlide();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
